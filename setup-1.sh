@@ -1,7 +1,9 @@
 #!/bin/bash
 
-apt update && apt -y install openssh-server python-pip
-pip install --upgrade pip && pip install -r /root/requirements-1.txt
+apt-get update && apt-get -y install openssh-server python curl # python-pip
+curl -s https://bootstrap.pypa.io/get-pip.py | python
+#pip install --upgrade pip
+pip install -r /root/requirements-1.txt
 mkdir /var/run/sshd
 echo 'root:contrail123' | chpasswd
 sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
